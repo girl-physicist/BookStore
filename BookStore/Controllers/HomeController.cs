@@ -21,11 +21,19 @@ namespace BookStore.Controllers
             // возвращаем представление
             return View();
         }
+        public ActionResult PartialString()
+        {
+            ViewBag.Message = "Сообщение частичного представления";
+            return PartialView();
+        }
+        public ActionResult PartialBlock()
+        {
+            return PartialView();
+        }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
+            ViewBag.Message = "Сообщение из метода About";
             return View();
         }
 

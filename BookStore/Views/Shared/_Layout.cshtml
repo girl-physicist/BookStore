@@ -13,5 +13,25 @@
         </ul>
     </nav>
     @RenderBody()
+
+    @*Вариант 1 - обязательная секция*@
+    @*<footer>@RenderSection("Footer")</footer>
+        @section Footer {
+            Все права защищены.}*@
+    @*Вариант 2 - необязательная секция*@
+    @*<footer>@RenderSection("Footer", false)</footer>*@
+    @*Вариант 3 - секция по умолчанию*@
+    <footer>
+        @if (IsSectionDefined("Footer"))
+        {
+            @RenderSection("Footer")
+        }
+        else
+        {
+            <span>Содержание элемента footer по умолчанию.</span>
+        }
+    </footer>
 </body>
 </html>
+
+

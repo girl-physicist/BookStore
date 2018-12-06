@@ -1,7 +1,65 @@
 ﻿@{
     ViewBag.Title = "About";
 }
+@using BookStore.Helpers
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<p>
+    <br /><br />
+    хелпер Html.Partial:
+    @Html.Partial("PartialString")
+    <br /><br />
+    хелпер - Html.RenderPartial
+    @{Html.RenderPartial("PartialString");}
+    <br /><br />
+    хелпер - Html.RenderPartial блок текста
+    @Html.Partial("PartialBlock", new string[] { "Belarus", "USA", "Canada", "France" })
+
+
+    @{
+        string[] cities = new string[] { "Лондон", "Париж", "Минск" };
+    }
+    @{
+        string[] countries = new string[] { "Великобритания", "Франция", "Беларусь" };
+    }
+
+
+    <br /><br />
+    helper CreateList
+    @helper CreateList(string[] all)
+    {
+        <ul>
+            @foreach (string s in all)
+            {
+                <li>@s</li>
+            }
+        </ul>
+    }
+    <h3>Города</h3>
+    @CreateList(cities)
+    <br />
+    <h3>Страны</h3>
+    @CreateList(countries)
+
+    <br /><br />
+    Использование MyHelpers
+    @MyHelpers.HtmlList(new string[] { "Лондон", "Париж", "Берлин" })
+
+    <br /><br />
+    Использование метода CreateList, расширяющего функциональность html-хелперов, которые представляет класс HtmlHelper,
+    <h3>Города</h3>
+    @Html.CreateList(cities)
+    <br />
+    <h3>Страны</h3>
+    <!-- или можно вызвать так -->
+    @ListHelper.CreateList(Html, countries)
+
+    
+    <br /><br />
+    Самозакрывающиеся элементы: ImageHelper
+    <br />
+    @Html.Image("/Content/кружка новогодняя.jpg", "кружка новогодняя",null)
+    <br /> Calling helper with HTML attributes<br />
+   @Html.Image("/Content/кружка новогодняя.jpg", "кружка новогодняя", new {border="4px"})
+</p>
